@@ -9,10 +9,8 @@ lazy val scalaCheck = (project in file("."))
   .aggregate(
     scalaCheckCore.jvm,
     scalaCheckCore.js,
-    scalaCheckCore.native,
   )
 
-lazy val scalaCheckCore = (crossProject(JVMPlatform, JSPlatform, NativePlatform) in file("scalacheck-core"))
+lazy val scalaCheckCore = (crossProject(JVMPlatform, JSPlatform) in file("scalacheck-core"))
   .settings(name := "scalacheck-core")
   .settings(crossDependencies(gav.scalaCheck))
-  .nativeSettings(crossDependencyOverrides(gav.scalaNative.testInterface))

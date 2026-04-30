@@ -14,7 +14,7 @@ sbt test                   # 测试（当前无测试）
 sbt +publishLocal          # 跨 Scala 版本发布到本地
 ```
 
-跨平台构建（JVM / Scala.js / Scala Native），源码全部在 `scalacheck-core/shared/`，无平台特定代码。
+跨平台构建（JVM / Scala.js），源码全部在 `scalacheck-core/shared/`，无平台特定代码。
 
 ## 架构
 
@@ -23,7 +23,7 @@ scalacheck/                          # 根项目，聚合三个平台子项目
   scalacheck-core/
     shared/src/main/scala/org/scalacheck/
       GenOps.scala                   # 唯一源文件：暴露 Gen 内部 API
-    jvm/ | js/ | native/             # 平台子项目，无额外源码
+    jvm/ | js/                        # 平台子项目，无额外源码
 ```
 
 **GenOps** 提供两个方法：
@@ -33,4 +33,3 @@ scalacheck/                          # 根项目，聚合三个平台子项目
 ## 依赖
 
 - 仅依赖 `org.scalacheck::scalacheck`（通过 `gav.scalaCheck` 引入，版本在 `build-gav` 中管理）
-- Native 平台通过 `crossDependencyOverrides` 解决 scala-native test-interface 版本冲突
